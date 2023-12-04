@@ -7,7 +7,6 @@ def day4a():
         for line in infile:
             cards.append(re.findall(r'\d+', line))
 
-    # nums 2-11 are the winners, 12-36 are the hand
     total = 0
 
     for card in cards:

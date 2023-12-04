@@ -14,8 +14,6 @@ def day4b():
             cards.append(re.findall(r'\d+', line))
             copies[i + 1] = 1
 
-    # nums 2-11 are the winners, 12-36 are the hand
-
     for card in cards:
         num_wins = 0
         my_card = card[SPLIT_INDEX:]
@@ -26,7 +24,6 @@ def day4b():
         for i in range(num_wins):
             copies[int(card[0]) + i + 1] += (1 * copies[int(card[0])])
 
-    print(copies)
     print(sum(copies[i] for i in range(1, len(cards) + 1)))
 
 
