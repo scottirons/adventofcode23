@@ -6,18 +6,10 @@ def day6b():
     with open("input.txt", "r") as f:
         lines = f.read().split("\n")
 
-    times = re.findall(r'\d+', lines[0])
-    distances = re.findall(r'\d+', lines[1])
-    result = 1
+    t = int(''.join(re.findall(r'\d+', lines[0])))
+    d = int(''.join(re.findall(r'\d+', lines[1])))
 
-    for i in range(len(times)):
-        num_wins = 0
-        for j in range(1, int(times[i]) + 1):
-            if (int(times[i]) - j) * j > int(distances[i]):
-                num_wins += 1
-        result *= num_wins
-
-    return result
+    return sum((t - i) * i > d for i in range(1, t))
 
 
 start_time = time.perf_counter()
