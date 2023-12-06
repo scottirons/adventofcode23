@@ -60,9 +60,9 @@ def day5b():
         while process_stacc:
             process_range(process_stacc.pop())
 
-    print(curr_min)
+    return curr_min
 
 
 strt = time.perf_counter()
-day5b()
-print(time.perf_counter() - strt)
+print(f'Day 5 part b solution: {day5b()}')
+print(f'This took {time.perf_counter() - strt} seconds')
