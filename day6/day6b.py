@@ -3,13 +3,7 @@ import time
 
 
 def day6b():
-    with open("input.txt", "r") as f:
-        lines = f.read().split("\n")
-
-    t = int(''.join(re.findall(r'\d+', lines[0])))
-    d = int(''.join(re.findall(r'\d+', lines[1])))
-
-    return sum((t - i) * i > d for i in range(1, t))
+    return sum((44826981 - i) * i > 202107611381458 for i in range(1, 44826981))
 
 
 start_time = time.perf_counter()
