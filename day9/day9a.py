@@ -6,6 +6,7 @@ class Solution:
         self.lines = None
         self.num_lines = None
         self.next_num_sum = 0
+        self.prev_num_sum = 0
 
     def parse(self):
         with open('input.txt', 'r') as f:
@@ -17,14 +18,26 @@ class Solution:
         for line in self.num_lines:
             self.next_num_sum += (self.find_next_num(line) + line[-1])
 
+    def solve_b(self):
+        for line in self.num_lines:
+            self.prev_num_sum += (line[0] - self.find_prev_num(line))
+
     def find_next_num(self, seq):
         next_seq = [seq[i + 1] - seq[i] for i in range(len(seq) - 1)]
         if all(num == 0 for num in next_seq):
             return 0
         return next_seq[-1] + self.find_next_num(next_seq)
 
+    def find_prev_num(self, seq):
+        next_seq = [seq[i + 1] - seq[i] for i in range(len(seq) - 1)]
+        if all(num == 0 for num in next_seq):
+            return 0
+        return next_seq[0] - self.find_prev_num(next_seq)
+
 
 sol = Solution()
 sol.parse()
 sol.solve_a()
 print(sol.next_num_sum)
+sol.solve_b()
+print(sol.prev_num_sum)
