@@ -35,7 +35,7 @@ def day8a():
         if 0 not in first_end:
             break
 
-    return math.lcm(first_end[0], first_end[1], first_end[2], first_end[3], first_end[4], first_end[5])
+    return math.lcm(*first_end)
 
 
 print(f'Part 2: {day8a()}')
