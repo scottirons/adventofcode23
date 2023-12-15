@@ -38,7 +38,7 @@ class Solution:
         memo = defaultdict()
         num_rows = len(self.grid)
         num_cols = len(self.grid[-0])
-        for i in range(1_000_000_000):
+        for i in range(1_000):
             total = 0
             # north
             for c in range(num_cols):
@@ -109,11 +109,12 @@ class Solution:
                 # ok this print told me it repeats every 7 for the sample
                 # for the input, it repeats every 14, so 1 billion mod 14 = 6
                 # found the right one by solving 1,000,000,000 = 14x + *testing nums lol* from the following output
-                print(memo[grid_state], 1_000_000_000 % memo[grid_state][1][0], (i + 1), (i + 1) % memo[grid_state][1][0])
+                print(memo[grid_state], 1_000_000_000 % memo[grid_state][1][0], (i + 1), (i + 1) % memo[grid_state][1][-1])
                 if 1_000_000_000 % memo[grid_state][1][0] == 0 and (i + 1) % memo[grid_state][1][0] == 0:
                     return memo[grid_state][0]
                 memo[grid_state][1].append((i + 1))
-            memo[grid_state] = (total, [(i + 1)])
+            else:
+                memo[grid_state] = (total, [(i + 1)])
 
 
 sol = Solution("input.txt")
