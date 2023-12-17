@@ -26,7 +26,7 @@ class Solution:
 
     def solve(self, starting_point=(0, (0, 0))):
         stack = [starting_point]
-        visited = {starting_point}  # direction, (coords). dirs = 0, 1, 2, 3 == r, d, l, u
+        visited = {starting_point}
         its_lit_fam = {starting_point[1]}
         while stack:
             curr_dir, curr_point = stack.pop()
