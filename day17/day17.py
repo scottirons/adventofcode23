@@ -42,25 +42,8 @@ class Solution:
         while self.heap:
             curr_score, curr_dir, curr_point, curr_len = heappop(self.heap)
             # we can try all directions
-            if curr_len >= min_moves:
-                for d in self.next_moves[curr_dir]:
-                    next_len = curr_len + 1 if d[2] == curr_dir else 1
-                    next_point = (curr_point[0] + d[0], curr_point[1] + d[1])
-                    next_dir = d[2]
-                    if next_len <= max_moves and self.is_valid_point(next_point):
-                        next_score = curr_score + int(self.grid[next_point[0]][next_point[1]])
-                        if next_point == self.finish:
-                            self.sol_a = min(self.sol_a, next_score)
-                            # idk we'll always find the solution the first time we get to the end
-                            return
-                        else:
-                            if self.visited[next_point[0]][next_point[1]][next_dir][next_len] > next_score \
-                                    or not self.visited[next_point[0]][next_point[1]][next_dir][next_len]:
-                                self.visited[next_point[0]][next_point[1]][next_dir][next_len] = next_score
-                                heappush(self.heap, (next_score, next_dir, next_point, next_len))
-            # otherwise just try straight (dang this is very ugly oh well)
-            else:
-                d = self.next_moves[curr_dir][0]
+            next_moves = self.next_moves[curr_dir] if curr_len >= min_moves else [self.next_moves[curr_dir][0]]
+            for d in next_moves:
                 next_len = curr_len + 1 if d[2] == curr_dir else 1
                 next_point = (curr_point[0] + d[0], curr_point[1] + d[1])
                 next_dir = d[2]
