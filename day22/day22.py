@@ -1,3 +1,4 @@
+import time
 from collections import defaultdict
 
 
@@ -65,7 +66,7 @@ def solve(source):
         for br in r_a[b]:
             add = len(r_o[br]) > 1 and add
         total += 1 if add else False
-    print(total)
+    print(f'Part 1: {total}')
 
     dis = set()
 
@@ -86,7 +87,9 @@ def solve(source):
     for b in sorted(r_a):
         dis = {b}
         total_b += chain_reaction(b)
-    print(total_b)
+    print(f'Part 2: {total_b}')
 
 
+start = time.perf_counter()
 solve("input.txt")
+print(f'Whole thing took {round(time.perf_counter() - start, 4)} seconds')
