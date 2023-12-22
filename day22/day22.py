@@ -67,27 +67,26 @@ def solve(source):
         total += 1 if add else False
     print(total)
 
-    # part b
-    fall = defaultdict(int)
+    dis = set()
+
+    def will_fall(brick):
+        return all(b in dis for b in r_o[brick])
 
     def chain_reaction(brk):
-        if brk in fall:
-            return fall[brk]
-        if not r_a[brk]:
-            return 0
-
         t = 0
         for brik in r_a[brk]:
-            t += chain_reaction(brik) + 1
+            if will_fall(brik):
+                t += 1
+                dis.add(brik)
+            t += chain_reaction(brik)
         return t
 
     total_b = 0
-    gone_rui = set()
+
     for b in sorted(r_a):
-        t =
-        fall[b] = t
-        total_b += t
+        dis = {b}
+        total_b += chain_reaction(b)
     print(total_b)
 
 
-solve("test.txt")
+solve("input.txt")
