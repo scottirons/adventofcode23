@@ -41,30 +41,26 @@ def part_2(source):
             if lines[i][j] == 'S':
                 start = (i, j)
                 lines[i] = lines[i].replace('S', '.')
-    max_r, max_c = len(lines), len(lines[0])
+    max_r, max_c = len(lines) - 1, len(lines[0]) - 1
 
-    could_work = set()
     process = [start]
-    for i in range(1, 1000):
+    for i in range(1, 65 + (131 * 2) + 1):
         visited = set()
         next_process = []
-        for coord in process:
-            for d in DIRS:
-                next_r, next_c = coord[0] + d[0], coord[1] + d[1]
-                next_mod_r, next_mod_c = next_r % len(lines), next_c % len(lines)
-                # i = 132, and could_work is 17153 items long
-                # if i % 2 == 0 and (next_mod_r, next_mod_c) not in could_work:
-                #     print(f'adding a new value to what could work at i = {i}, and could_work is {len(could_work)} '
-                #           f'items long')
-                #     could_work.add((next_mod_r, next_mod_c))
-                if (next_r, next_c) not in visited and lines[next_mod_r][next_mod_c] == '.':
+        for rr, cc in process:
+            for r, c in DIRS:
+                next_r, next_c = rr + r, cc + c
+                next_rr, next_cr = next_r % len(lines), next_c % len(lines[0])
+                if 0 <= next_rr <= max_r and 0 <= next_cr <= max_c and (next_r, next_c) not in visited and \
+                        lines[next_rr][next_cr] == '.':
                     visited.add((next_r, next_c))
                     next_process.append((next_r, next_c))
         process = next_process
+        if i in {65, 65 + 131}:
+            print(len(process))
     print(len(process))
+    print(15085 * (26501365//131) * (26501365//131) + 15195 * (26501365//131) + 3819)
 
 
-# i = 132, and could_work is 17153 items long
 if __name__ == "__main__":
-    part_1('input.txt')
     part_2('input.txt')
