@@ -11,6 +11,7 @@ def find_min_max(brick):
 
 
 def solve(source):
+    s_t = time.perf_counter()
     with open(source, 'r') as f:
         lines = f.read().split('\n')
     bricks = []
@@ -67,6 +68,7 @@ def solve(source):
             add = len(r_o[br]) > 1 and add
         total += 1 if add else False
     print(f'Part 1: {total}')
+    print(f'Part 1 took {round(time.perf_counter() - s_t, 4)} seconds')
 
     dis = set()
 
